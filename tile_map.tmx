@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="106" height="50" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="mario_bros" tilewidth="16" tileheight="16" spacing="2">
+  <image source="public/tilemaps/tiles/mario_bros.png" width="485" height="546"/>
+ </tileset>
+ <layer name="Terrain" width="106" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0ztOw0AUQNExTVYQRAXU6bLREBaDQh8pPaFHcp8t8JnCDZHtfC3Pi05x9GyNZI/m2tMqpSkAAAAAAAAAAIxoncbfA4d96XSR73x+P9nvwOeoUww6De8a/5xOMegUg04x6BSDTjHoFINOMQzR6UP7ojttmlnv3Zcg+rdzzU51xyzBTqfBO63yHt+zx+wpe+657nrGpICzPtes6fR2onn136aZdcc8xuIupZcWy2yb3/mZ2tf33VftXnvW+jwUYNGcw9jfCwAAAADArfsD3ZP7sQ==
+  </data>
+ </layer>
+</map>
