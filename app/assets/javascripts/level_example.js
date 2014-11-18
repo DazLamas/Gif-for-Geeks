@@ -12,7 +12,6 @@ States.LevelExample.prototype.preload = function () {
     //Load the spritesheet for the tilemap
     game.load.image('mario_bros', 'tilemaps/tiles/mario_bros.png');
     //Load the player
-    // game.load.image('player', 'tilemaps/sprites/phaser-dude.png');
     game.load.image('player', 'tilemaps/sprites/phaser-dude.png');
 
 };
@@ -23,7 +22,6 @@ States.LevelExample.prototype.create = function () {
     var game = this.game;
     game.width = 1000;
     game.height = 600;
-    // alert(game.world_definedSize)
 
     game.stage.backgroundColor = '#787878';
     // var map = new Tilemap.create(game, 'test_map', 1200, 1000);
@@ -44,13 +42,14 @@ States.LevelExample.prototype.create = function () {
 
     //Add player
     game.player = game.add.sprite(50, 530, 'player');
-    game.player.health = 50;   // simple as that really.
-    game.player.scale.x = 0.2; // set the size/scale of the width
-    game.player.scale.y = 0.2; // same for the height of the player
+    game.player.health = 50;
+    game.player.scale.x = 0.2; // width
+    game.player.scale.y = 0.2; // height
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.enable(game.player, Phaser.Physics.ARCADE);
-
+    // game.player.body.bounce.set(1);
+    // game.player.body.bounce.setTo(0.3, 0.3)
     game.world.bounds.setTo(0, 0, 50, 50);
     game.player.collideWorldBounds = true;
 };
