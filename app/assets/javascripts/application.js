@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require phaser.min.js
 //= require phaser
 //= require level_example
 //= require mario
+//= require main.js
+

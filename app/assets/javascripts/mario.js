@@ -1,7 +1,7 @@
 
 
 
-// New game inherit from haser.js
+// New game inherit from phaser.js
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example');
-game.state.add('paco', States.LevelExample);
-game.state.start('paco');
+game.state.add('level1', States.LevelExample);
+game.state.start('level1');
