@@ -12,7 +12,10 @@ var mainState = {
      // That's where we load the game's assets
     preload: function() {
 
-        game.load.image('player', 'tilemaps/sprites/player.png');
+        game.load.image('player', 'assets/player.png');
+        game.load.image('wallV', 'assets/wallVertical.png');
+        game.load.image('wallH', 'assets/wallHorizontal.png');
+
     },
 
     // Set up the game, display sprites, etc.
@@ -22,7 +25,7 @@ var mainState = {
         // game.add.sprite(positionX, positionY, imageName). This one will add
         // our player at the center of the screen
         // to use the player everywhere in our state, we need to use the this keyword:
-        this.player = game.add.sprite(game.world.centerX, game.world.centerY, 'player');
+        this.player = game.add.sprite(250, 170, 'player');
         // set the anchor point to the middle of the sprite
         this.player.anchor.setTo(0.5, 0.5);
 
@@ -35,13 +38,21 @@ var mainState = {
         // Enable arrow-keys to move player.
         this.cursor = game.input.keyboard.createCursorKeys();
 
+        // Calling createWorld function defined bellow
+        this.createWorld();
     },
 
     update: function() {
         // This function is called 60 times per second
-        // It contains the game's logic
-        // Call movePlayer
+
+        // Tell Phaser that the player and the walls should collide.
+        // This works because we previously enabled Arcade physics for both the player
+        //and the walls. Add the collisions at the beginning of the update function
+        game.physics.arcade.collide(this.player, this.walls);
+
+        // Calling movePlayer function
         this.movePlayer();
+
     },
 
     movePlayer: function() {
@@ -69,11 +80,36 @@ var mainState = {
            this.player.body.velocity.y = -320;
        }
     },
+
+    createWorld: function() {
+
+        // Create wall group
+        this.walls = game.add.group();
+        // Add Arcade physics to the wall
+        this.walls.enableBody = true;
+
+        // Create the 10 walls
+        game.add.sprite(0, 0, 'wallV', 0, this.walls); // Left
+        game.add.sprite(480, 0, 'wallV', 0, this.walls); // Right
+
+        game.add.sprite(0, 0, 'wallH', 0, this.walls); // Top left
+        game.add.sprite(300, 0, 'wallH', 0, this.walls); // Top right
+        game.add.sprite(0, 320, 'wallH', 0, this.walls); // Bottom left
+        game.add.sprite(300, 320, 'wallH', 0, this.walls); // Bottom right
+
+        game.add.sprite(-100, 160, 'wallH', 0, this.walls); // Middle left
+        game.add.sprite(400, 160, 'wallH', 0, this.walls); // Middle right
+
+        var middleTop = game.add.sprite(100, 80, 'wallH', 0, this.walls);
+        middleTop.scale.setTo(1.5, 1);
+        var middleBottom = game.add.sprite(100, 240, 'wallH', 0, this.walls);
+        middleBottom.scale.setTo(1.5, 1);
+
+        //Set all the walls to be immovable
+        this.walls.setAll('body.immovable', true);
+    },
 };
 
-// mainState.preload();
-// mainState.create();
-// mainState.update();
 
 // Add the 'mainState' to Phaser, called 'main', and start the state
 game.state.add('main', mainState);
