@@ -14,4 +14,7 @@ class WelcomeController < ApplicationController
   def pixel_platform
 
   end
+  def tilemap_platform
+
+  end
 end

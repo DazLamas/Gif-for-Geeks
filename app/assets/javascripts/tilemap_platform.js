@@ -12,10 +12,13 @@ var mainState = {
      // That's where we load the game's assets
     preload: function() {
 
+        //Player
         game.load.image('player', 'assets/player.png');
 
-        game.load.image('wallV', 'assets/wallVertical.png');
-        game.load.image('wallH', 'assets/wallHorizontal.png');
+        //map JSON
+        game.load.tilemap('mario_terrain_tilemap', 'assets/pixel_platform/mario_terrain_tilemap.json', null, Phaser.Tilemap.TILED_JSON)
+        //tileset PNG
+        game.load.image('mario_tileset', 'assets/pixel_platform/mario_tileset.png')
 
 
     },
@@ -26,6 +29,10 @@ var mainState = {
         // MAP ----------
 
         game.stage.backgroundColor = '#3498db';
+        map = game.add.tilemap('mario_terrain_tilemap');
+        map.addTilesetImage('mario_tileset', 'mario_tileset');//('1') spritesheet/tileset name inside of Tiled Map Editor. ('2') key in preload function
+        layer = map.createLayer('terrain');//'terrain' is the name of a layer inside of Tiled Map Editor
+        layer.wrap = true;
 
         // PLAYER -------
 
@@ -44,17 +51,22 @@ var mainState = {
         // Enable arrow-keys to move player.
         this.cursor = game.input.keyboard.createCursorKeys();
 
-        //Calling createWorld function defined bellow
-        this.createWorld();
+        // Calling createWorld function defined bellow
+        // this.createWorld();
+
+        // COLLISION
+        map.setCollisionBetween(0, 277, true, this.currentLayer);
+        game.physics.arcade.collide(this.player, layer);
+        layer.enableBody = true;
     },
 
     update: function() {
-        //This function is called 60 times per second
+        // This function is called 60 times per second
 
         // Tell Phaser that the player and the walls should collide.
         // This works because we previously enabled Arcade physics for both the player
-        // and the walls. Add the collisions at the beginning of the update function
-        game.physics.arcade.collide(this.player, this.walls);
+        //and the walls. Add the collisions at the beginning of the update function
+
 
         // Calling movePlayer function
         this.movePlayer();
@@ -87,34 +99,33 @@ var mainState = {
        }
     },
 
-    createWorld: function() {
+    // createWorld: function() {
 
-        // Create wall group
-        this.walls = game.add.group();
-        // Add Arcade physics to the wall
-        this.walls.enableBody = true;
+    //     // Create wall group
+    //     this.walls = game.add.group();
+    //     // Add Arcade physics to the wall
+    //     this.walls.enableBody = true;
 
-        // Create the 10 walls
-        // game.add.sprite(0, 0, 'wallV', 0, this.walls); // Left
-        // game.add.sprite(480, 0, 'wallV', 0, this.walls); // Right
+    //     // Create the 10 walls
+    //     game.add.sprite(0, 0, 'wallV', 0, this.walls); // Left
+    //     game.add.sprite(480, 0, 'wallV', 0, this.walls); // Right
 
-        flour = game.add.sprite(0, 470, 'wallH', 0, this.walls); // Top left
-        flour.scale.setTo(6, 1);
-        // game.add.sprite(300, 0, 'wallH', 0, this.walls); // Top right
-        // game.add.sprite(0, 320, 'wallH', 0, this.walls); // Bottom left
-        // game.add.sprite(300, 320, 'wallH', 0, this.walls); // Bottom right
+    //     game.add.sprite(0, 0, 'wallH', 0, this.walls); // Top left
+    //     game.add.sprite(300, 0, 'wallH', 0, this.walls); // Top right
+    //     game.add.sprite(0, 320, 'wallH', 0, this.walls); // Bottom left
+    //     game.add.sprite(300, 320, 'wallH', 0, this.walls); // Bottom right
 
-        // game.add.sprite(-100, 160, 'wallH', 0, this.walls); // Middle left
-        // game.add.sprite(400, 160, 'wallH', 0, this.walls); // Middle right
+    //     game.add.sprite(-100, 160, 'wallH', 0, this.walls); // Middle left
+    //     game.add.sprite(400, 160, 'wallH', 0, this.walls); // Middle right
 
-        // var middleTop = game.add.sprite(100, 80, 'wallH', 0, this.walls);
-        // middleTop.scale.setTo(1.5, 1);
-        // var middleBottom = game.add.sprite(100, 240, 'wallH', 0, this.walls);
-        // middleBottom.scale.setTo(1.5, 1);
+    //     var middleTop = game.add.sprite(100, 80, 'wallH', 0, this.walls);
+    //     middleTop.scale.setTo(1.5, 1);
+    //     var middleBottom = game.add.sprite(100, 240, 'wallH', 0, this.walls);
+    //     middleBottom.scale.setTo(1.5, 1);
 
-        //Set all the walls to be immovable
-        this.walls.setAll('body.immovable', true);
-    },
+    //     //Set all the walls to be immovable
+    //     this.walls.setAll('body.immovable', true);
+    // },
 };
 
 

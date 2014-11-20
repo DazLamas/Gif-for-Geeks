@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="106" height="50" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="106" height="30" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="collidable" value="true"/>
+  <property name="collides" value="true"/>
+  <property name="collision" value="true"/>
+ </properties>
  <tileset firstgid="1" name="mario_tileset" tilewidth="16" tileheight="16" spacing="2">
   <image source="assets/pixel_platform/mario_tileset.png" width="485" height="546"/>
  </tileset>
- <layer name="terrain" width="106" height="50">
+ <layer name="terrain" width="106" height="30">
+  <properties>
+   <property name="collidable" value="true"/>
+   <property name="collides" value="true"/>
+   <property name="collision" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0cEJwCAQRNHFxvUYLUGbzTYgHg3hPfj3gYkAAAAAAAAAAAAAAAAAAAAAAAAA4A9qiWjl9gpOZn60/LT1ZF2fbmQvnzU69w==
+   eJzt0UEKABAURdGfjTNkC2yWHZgo1Dl1569eBAAAAAAAAAAAAADAn3KKKOn2Cnb6+mj46Zi6anq+CelROvY=
   </data>
  </layer>
 </map>
