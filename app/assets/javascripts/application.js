@@ -12,8 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require phaser
-//= require level_example
-
-//= require main.js
+//= require phaser.js
 
