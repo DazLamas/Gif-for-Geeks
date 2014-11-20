@@ -57,7 +57,7 @@ var mainState = {
         // COLLISION
         map.setCollisionBetween(0, 277, true, this.currentLayer);
         game.physics.arcade.collide(this.player, layer);
-        layer.enableBody = true;
+        this.layer.enableBody = true;
     },
 
     update: function() {

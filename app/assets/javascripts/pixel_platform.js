@@ -14,8 +14,9 @@ var mainState = {
 
         game.load.image('player', 'assets/player.png');
 
-        game.load.image('wallV', 'assets/wallVertical.png');
         game.load.image('wallH', 'assets/wallHorizontal.png');
+
+        game.load.image('gift', 'assets/gift.png');
 
 
     },
@@ -23,38 +24,69 @@ var mainState = {
     // Set up the game, display sprites, etc.
     create: function() {
 
+        // we have to start the physics system running, and then for every
+        // sprite or Group that we wish to use physics on we enable them
+        // Once done the sprites gain a new body property, which is an instance of
+        // ArcadePhysics.Body. This represents the sprite as a physical body in Phasers Arcade Physics engine.
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+
         // MAP ----------
 
         game.stage.backgroundColor = '#3498db';
 
         // PLAYER -------
 
-        game.physics.startSystem(Phaser.Physics.ARCADE);
-
-        // This one will add our player at the center of the screen
         // to use the player everywhere in our state, we need to use the this keyword:
         this.player = game.add.sprite(250, 170, 'player');
-        // set the anchor point to the middle of the sprite
-        this.player.anchor.setTo(0.5, 0.5);
+
+        this.player.anchor.setTo(0.5, 0.5); //anchor point
+
         // Tell Phaser that the player will use the Arcade physics engine
         game.physics.arcade.enable(this.player);
         // Add vertical gravity to the player, it will allow to use "body" property to:
         this.player.body.gravity.y = 500;
+        this.player.body.bounce.y = 0.2; //bote
+        this.player.body.collideWorldBounds = true; //malditos límites
 
-        // Enable arrow-keys to move player.
+        // --------
+
+        // Enable arrow-keys to move player.That are all instances of Phaser.Key objects
         this.cursor = game.input.keyboard.createCursorKeys();
 
-        //Calling createWorld function defined bellow
+        // Calling createWorld function defined bellow
         this.createWorld();
+
+        //GIFT -------
+        gifts = game.add.group();
+
+        gifts.enableBody = true;
+
+       // Create 12 gifts spaced apart
+        for (var i = 0; i < 12; i++)
+        {
+            //  Create a star inside of the 'stars' group
+            var gift = gifts.create(i * 70, 0, 'gift');
+
+            //  Let gravity do its thing
+            gift.body.gravity.y = 6;
+
+            //  This just gives each gift a slightly random bounce value
+            gift.body.bounce.y = 0.7 + Math.random() * 0.2;
+        }
     },
 
     update: function() {
         //This function is called 60 times per second
 
-        // Tell Phaser that the player and the walls should collide.
+        // Tell Phaser that the player and the platform should collide.
         // This works because we previously enabled Arcade physics for both the player
-        // and the walls. Add the collisions at the beginning of the update function
-        game.physics.arcade.collide(this.player, this.walls);
+        // and the platform. Add the collisions at the beginning of the update function
+        game.physics.arcade.collide(this.player, this.platform);
+
+        game.physics.arcade.collide(gifts, this.platform);
+
+        // Check if player overlaps gifts and send info to collectGift function
+        // game.physics.arcade.overlap(this.player, gifts, collectGift, null, this);
 
         // Calling movePlayer function
         this.movePlayer();
@@ -90,31 +122,38 @@ var mainState = {
     createWorld: function() {
 
         // Create wall group
-        this.walls = game.add.group();
-        // Add Arcade physics to the wall
-        this.walls.enableBody = true;
+        this.platform = game.add.group();
+        // Add Arcade physics to the wall. This permit player to collide with the flour
+        this.platform.enableBody = true;
 
-        // Create the 10 walls
-        // game.add.sprite(0, 0, 'wallV', 0, this.walls); // Left
-        // game.add.sprite(480, 0, 'wallV', 0, this.walls); // Right
+        // Create the 10 platform
+        // game.add.sprite(0, 0, 'wallV', 0, this.platform); // Left
+        // game.add.sprite(480, 0, 'wallV', 0, this.platform); // Right
 
-        flour = game.add.sprite(0, 470, 'wallH', 0, this.walls); // Top left
-        flour.scale.setTo(6, 1);
-        // game.add.sprite(300, 0, 'wallH', 0, this.walls); // Top right
-        // game.add.sprite(0, 320, 'wallH', 0, this.walls); // Bottom left
-        // game.add.sprite(300, 320, 'wallH', 0, this.walls); // Bottom right
+        floor = game.add.sprite(0, 470, 'wallH', 0, this.platform); // Top left
+        floor.scale.setTo(6, 1);
+        // game.add.sprite(300, 0, 'wallH', 0, this.platform); // Top right
+        // game.add.sprite(0, 320, 'wallH', 0, this.platform); // Bottom left
+        // game.add.sprite(300, 320, 'wallH', 0, this.platform); // Bottom right
 
-        // game.add.sprite(-100, 160, 'wallH', 0, this.walls); // Middle left
-        // game.add.sprite(400, 160, 'wallH', 0, this.walls); // Middle right
+        // game.add.sprite(-100, 160, 'wallH', 0, this.platform); // Middle left
+        // game.add.sprite(400, 160, 'wallH', 0, this.platform); // Middle right
 
-        // var middleTop = game.add.sprite(100, 80, 'wallH', 0, this.walls);
+        // var middleTop = game.add.sprite(100, 80, 'wallH', 0, this.platform);
         // middleTop.scale.setTo(1.5, 1);
-        // var middleBottom = game.add.sprite(100, 240, 'wallH', 0, this.walls);
+        // var middleBottom = game.add.sprite(100, 240, 'wallH', 0, this.platform);
         // middleBottom.scale.setTo(1.5, 1);
 
-        //Set all the walls to be immovable
-        this.walls.setAll('body.immovable', true);
+        //Set all the platform to be immovable
+        this.platform.setAll('body.immovable', true);
     },
+
+    // function collectGift (player, gift) {
+
+    //     // Removes the star from the screen
+    //     gift.kill();
+
+    // }
 };
 
 
