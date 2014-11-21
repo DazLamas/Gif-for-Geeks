@@ -86,7 +86,7 @@ var mainState = {
         game.physics.arcade.collide(gifts, this.platform);
 
         // Check if player overlaps gifts and send info to collectGift function
-        // game.physics.arcade.overlap(this.player, gifts, collectGift, null, this);
+        game.physics.arcade.overlap(this.player, gifts, this.collectGift, null, this);
 
         // Calling movePlayer function
         this.movePlayer();
@@ -148,12 +148,12 @@ var mainState = {
         this.platform.setAll('body.immovable', true);
     },
 
-    // function collectGift (player, gift) {
+    collectGift: function (player, gift) {
 
-    //     // Removes the star from the screen
-    //     gift.kill();
+     // Removes the star from the screen
+        gift.kill();
 
-    // }
+    }
 };
 
 
