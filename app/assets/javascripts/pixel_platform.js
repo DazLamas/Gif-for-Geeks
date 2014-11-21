@@ -16,7 +16,9 @@ var mainState = {
 
         game.load.image('wallH', 'assets/wallHorizontal.png');
 
-        game.load.image('gift', 'assets/gift.png');
+        game.load.image('wallV', 'assets/wallVertical.png');
+
+        game.load.image('spring', 'assets/gift.png');
 
 
     },
@@ -48,31 +50,35 @@ var mainState = {
         this.player.body.bounce.y = 0.2; //bote
         this.player.body.collideWorldBounds = true; //malditos límites
 
-        // --------
+        // CURSORS --------
 
         // Enable arrow-keys to move player.That are all instances of Phaser.Key objects
         this.cursor = game.input.keyboard.createCursorKeys();
 
-        // Calling createWorld function defined bellow
-        this.createWorld();
 
-        //GIFT -------
-        gifts = game.add.group();
 
-        gifts.enableBody = true;
+        // SPRINGS -------
 
-       // Create 12 gifts spaced apart
-        for (var i = 0; i < 12; i++)
+        springs = game.add.group();
+        springs.enableBody = true;
+
+       // Create 12 springs spaced apart
+        for (var i = 0; i < 5; i++)
         {
-            //  Create a star inside of the 'stars' group
-            var gift = gifts.create(i * 70, 0, 'gift');
+            //  Create a spring inside of the 'springs' group
+            var spring = springs.create(i * 100, i * 100, 'spring');
 
             //  Let gravity do its thing
-            gift.body.gravity.y = 6;
+            spring.body.gravity.y = 6;
+            spring.body.gravity.x = 6;
 
-            //  This just gives each gift a slightly random bounce value
-            gift.body.bounce.y = 0.7 + Math.random() * 0.2;
+            //  This just gives each spring a slightly random bounce value
+            spring.body.bounce.y = 0.7 + Math.random() * 2;
+            spring.body.bounce.x = 0.7 + Math.random() * 0.1;
         }
+
+        // Calling createWorld function defined bellow
+        this.createWorld();
     },
 
     update: function() {
@@ -83,11 +89,12 @@ var mainState = {
         // and the platform. Add the collisions at the beginning of the update function
         game.physics.arcade.collide(this.player, this.platform);
 
-        game.physics.arcade.collide(gifts, this.platform);
+        game.physics.arcade.collide(springs, this.platform);
 
-        // Check if player overlaps gifts and send info to collectGift function
-        game.physics.arcade.overlap(this.player, gifts, this.collectGift, null, this);
-
+// ------ esto es -------
+        // Check if player overlaps springs and send info to collectspring function
+        // game.physics.arcade.overlap(this.player, springs, this.collectspring, null, this);
+// ------ esto es -------
         // Calling movePlayer function
         this.movePlayer();
 
@@ -121,39 +128,33 @@ var mainState = {
 
     createWorld: function() {
 
+
         // Create wall group
         this.platform = game.add.group();
         // Add Arcade physics to the wall. This permit player to collide with the flour
         this.platform.enableBody = true;
 
-        // Create the 10 platform
-        // game.add.sprite(0, 0, 'wallV', 0, this.platform); // Left
-        // game.add.sprite(480, 0, 'wallV', 0, this.platform); // Right
-
-        floor = game.add.sprite(0, 470, 'wallH', 0, this.platform); // Top left
+        // Create and add ground to platform group
+        floor = game.add.sprite(0, 470, 'wallH', 0, this.platform); // Floor
         floor.scale.setTo(6, 1);
-        // game.add.sprite(300, 0, 'wallH', 0, this.platform); // Top right
-        // game.add.sprite(0, 320, 'wallH', 0, this.platform); // Bottom left
-        // game.add.sprite(300, 320, 'wallH', 0, this.platform); // Bottom right
-
-        // game.add.sprite(-100, 160, 'wallH', 0, this.platform); // Middle left
-        // game.add.sprite(400, 160, 'wallH', 0, this.platform); // Middle right
-
-        // var middleTop = game.add.sprite(100, 80, 'wallH', 0, this.platform);
-        // middleTop.scale.setTo(1.5, 1);
-        // var middleBottom = game.add.sprite(100, 240, 'wallH', 0, this.platform);
-        // middleBottom.scale.setTo(1.5, 1);
+        leftWall = game.add.sprite(-20, 0, 'wallV', 0, this.platform); // Left
+        leftWall.scale.setTo(1, 2);
+        rightWall = game.add.sprite(1200, 0, 'wallV', 0, this.platform); // Right
+        rightWall.scale.setTo(1, 2);
+        topW = game.add.sprite(0, -20, 'wallH', 0, this.platform); // Top
+        topW.scale.setTo(6, 1);
 
         //Set all the platform to be immovable
         this.platform.setAll('body.immovable', true);
     },
 
-    collectGift: function (player, gift) {
+//-------------esto es -------
+    // collectspring: function (player, spring) {
 
-     // Removes the star from the screen
-        gift.kill();
+    //  // Removes the yellow from the screen
+    //     spring.kill();
 
-    }
+    // }
 };
 
 
