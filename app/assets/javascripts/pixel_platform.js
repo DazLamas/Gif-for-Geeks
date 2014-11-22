@@ -1,9 +1,15 @@
 // Create a 500px by 340px game in the 'pixel_platform_Div' element of the index.html
 // renderer: how to render the game, Phaser.AUTO automatically choose the best
 //option between webGL and canvas
-var game = new Phaser.Game(1200, 480, Phaser.AUTO, 'pixel_platform_Div');
+var game         = new Phaser.Game(1200, 480, Phaser.AUTO, 'pixel_platform_Div');
 
-var score = 0;
+var score        = 0;
+
+// var textStyle = { font: '64px Arial', align: 'center'};
+// var timer
+// var milliseconds = 0;
+// var seconds      = 0;
+// var minutes      = 0;
 
 // create only state 'mainState'
 var mainState = {
@@ -11,7 +17,7 @@ var mainState = {
 // Define the 3 default Phaser functions:
 
     // This function will be executed at the beginning
-     // That's where we load the game's assets
+    // That's where we load the game's assets
     preload: function() {
 
         game.load.image('player', 'assets/player.png');
@@ -36,12 +42,13 @@ var mainState = {
         // ArcadePhysics.Body. This represents the sprite as a physical body in Phasers Arcade Physics engine.
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        // MAP ----------
 
+        // MAP ----------
         game.stage.backgroundColor = '#3498db';
+        // game.world.setBounds(0, 0, 800, 2000);
+
 
         // PLAYER -------
-
         // to use the player everywhere in our state, we need to use the this keyword:
         this.player = game.add.sprite(250, 170, 'player');
 
@@ -56,16 +63,15 @@ var mainState = {
 
 
         // CURSORS --------
-
         // Enable arrow-keys to move player.That are all instances of Phaser.Key objects
         this.cursor = game.input.keyboard.createCursorKeys();
 
-        // SPRINGS -------
 
+        // YELLOWS -------
         springs = game.add.group();
         springs.enableBody = true;
 
-       // Create 20 springs spaced apart
+        // Create 20 springs spaced apart
         for (var i = 0; i < 20; i++)
         {
             //  Create a spring inside of the 'springs' group
@@ -79,10 +85,10 @@ var mainState = {
             game.physics.arcade.enable(spring);
         }
 
-        greens = game.add.group();
-        greens.enableBody = true;
 
         // GREENS -------
+        greens = game.add.group();
+        greens.enableBody = true;
 
         // Create green squares to collect
         for (var i = 0; i < 5; i++)
@@ -92,20 +98,22 @@ var mainState = {
             // game.physics.arcade.enable(green);
         }
 
+
+        // SCORE ---&--- TIMER
+        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        // this.timer = game.add.bitmapText(250, 250, '00:00:00', textStyle);
+
         // Calling createWorld function defined bellow
         this.createWorld();
-
-        // SCORE -----
-        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     },
 
     update: function() {
-        //This function is called 60 times per second
+        // This function is called 60 times per second
 
         // Tell Phaser that the player and the platform should collide.
         // This works because we previously enabled Arcade physics for both the player
         // and the platform. Add the collisions at the beginning of the update function
-        game.physics.arcade.collide(this.player, this.platform);
+        game.physics.arcade.collide(this.player, this.platform, this.killPlayer, null, this);
 
         game.physics.arcade.collide(springs, this.platform);
 
@@ -116,6 +124,11 @@ var mainState = {
         game.physics.arcade.overlap(this.player, greens, this.collectGreens, null, this);
         // Calling movePlayer function
         this.movePlayer();
+
+        // this.player.outOfBoundsKill = true;
+
+        // //Calling a different function to update the timer just cleans up the update loop if you have other code.
+        // this.updateTimer();
 
     },
 
@@ -171,6 +184,37 @@ var mainState = {
     doubleJump: function (player, spring) {
 
          this.player.body.velocity.y = -400
+
+    },
+
+    // updateTimer: function() {
+
+    //     minutes = Math.floor(game.time.time / 60000) % 60;
+
+    //     seconds = Math.floor(game.time.time / 1000) % 60;
+
+    //     milliseconds = Math.floor(game.time.time) % 100;
+
+    //     //If any of the digits becomes a single digit number, pad it with a zero
+    //     if (milliseconds < 10)
+    //         milliseconds = '0' + milliseconds;
+
+    //     if (seconds < 10)
+    //         seconds = '0' + seconds;
+
+    //     if (minutes < 10)
+    //         minutes = '0' + minutes;
+
+    //     this.timer.setText(minutes + ':'+ seconds + ':' + milliseconds);
+
+    // },
+
+    killPlayer: function (){
+
+        if (score<50) {
+            this.player.kill()
+            game.state.start('main');
+        };
 
     },
 
