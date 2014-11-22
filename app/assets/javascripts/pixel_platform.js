@@ -3,6 +3,8 @@
 //option between webGL and canvas
 var game = new Phaser.Game(1200, 480, Phaser.AUTO, 'pixel_platform_Div');
 
+var score = 0;
+
 // create only state 'mainState'
 var mainState = {
 
@@ -19,6 +21,8 @@ var mainState = {
         game.load.image('wallV', 'assets/wallVertical.png');
 
         game.load.image('spring', 'assets/gift.png');
+
+        game.load.image('green', 'assets/green.png');
 
 
     },
@@ -50,35 +54,49 @@ var mainState = {
         this.player.body.bounce.y = 0.2; //bote
         this.player.body.collideWorldBounds = true; //malditos límites
 
+
         // CURSORS --------
 
         // Enable arrow-keys to move player.That are all instances of Phaser.Key objects
         this.cursor = game.input.keyboard.createCursorKeys();
-
-
 
         // SPRINGS -------
 
         springs = game.add.group();
         springs.enableBody = true;
 
-       // Create 12 springs spaced apart
-        for (var i = 0; i < 5; i++)
+       // Create 20 springs spaced apart
+        for (var i = 0; i < 20; i++)
         {
             //  Create a spring inside of the 'springs' group
-            var spring = springs.create(i * 100, i * 100, 'spring');
-
-            //  Let gravity do its thing
-            spring.body.gravity.y = 6;
-            spring.body.gravity.x = 6;
+            var spring = springs.create(Math.random() * 800, Math.random() * 500, 'spring');
 
             //  This just gives each spring a slightly random bounce value
-            spring.body.bounce.y = 0.7 + Math.random() * 2;
-            spring.body.bounce.x = 0.7 + Math.random() * 0.1;
+            spring.body.bounce.y = 0.7;
+            spring.body.bounce.x = 0.7;
+
+            spring.body.collideWorldBounds = true; //malditos límites
+            game.physics.arcade.enable(spring);
+        }
+
+        greens = game.add.group();
+        greens.enableBody = true;
+
+        // GREENS -------
+
+        // Create green squares to collect
+        for (var i = 0; i < 5; i++)
+        {
+            //  Create a green inside of the 'greens' group
+            var green = greens.create(Math.random() * 800, Math.random() * 500, 'green');
+            // game.physics.arcade.enable(green);
         }
 
         // Calling createWorld function defined bellow
         this.createWorld();
+
+        // SCORE -----
+        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     },
 
     update: function() {
@@ -91,10 +109,11 @@ var mainState = {
 
         game.physics.arcade.collide(springs, this.platform);
 
-// ------ esto es -------
-        // Check if player overlaps springs and send info to collectspring function
-        // game.physics.arcade.overlap(this.player, springs, this.collectspring, null, this);
-// ------ esto es -------
+        game.physics.arcade.collide(springs, springs);
+
+        game.physics.arcade.collide(this.player, springs, this.doubleJump, null, this);
+
+        game.physics.arcade.overlap(this.player, greens, this.collectGreens, null, this);
         // Calling movePlayer function
         this.movePlayer();
 
@@ -123,11 +142,18 @@ var mainState = {
        if (this.cursor.up.isDown && this.player.body.touching.down) {
            // Move the player upward (jump)
            this.player.body.velocity.y = -320;
+
        }
     },
 
-    createWorld: function() {
+    collectGreens: function(player, green) {
+        green.kill()
 
+        score += 10;
+        scoreText.text = 'Score: ' + score;
+    },
+
+    createWorld: function() {
 
         // Create wall group
         this.platform = game.add.group();
@@ -137,24 +163,17 @@ var mainState = {
         // Create and add ground to platform group
         floor = game.add.sprite(0, 470, 'wallH', 0, this.platform); // Floor
         floor.scale.setTo(6, 1);
-        leftWall = game.add.sprite(-20, 0, 'wallV', 0, this.platform); // Left
-        leftWall.scale.setTo(1, 2);
-        rightWall = game.add.sprite(1200, 0, 'wallV', 0, this.platform); // Right
-        rightWall.scale.setTo(1, 2);
-        topW = game.add.sprite(0, -20, 'wallH', 0, this.platform); // Top
-        topW.scale.setTo(6, 1);
 
         //Set all the platform to be immovable
         this.platform.setAll('body.immovable', true);
     },
 
-//-------------esto es -------
-    // collectspring: function (player, spring) {
+    doubleJump: function (player, spring) {
 
-    //  // Removes the yellow from the screen
-    //     spring.kill();
+         this.player.body.velocity.y = -400
 
-    // }
+    },
+
 };
 
 
