@@ -16,25 +16,6 @@
     margin-top: 100px;
   }
 
-  header{
-    text-align: center;
-    background-color: #f8f8f8;
-  }
-
-  header img {
-    padding: 50px;
-  }
-
-  header p {
-    font-family: Goudy Old Style, serif;
-    line-height: 25px;
-    color: #979797;
-  }
-
-  #pixel_platform_Div {
-    margin: 50px 200px;
-  }
-
   button {
     font: calibri, sans-serif;
     color: white;
@@ -46,6 +27,33 @@
     background-color: #61ef61;
   }
 
+  .block{
+    text-align: center;
+    background-color: #f8f8f8;
+  }
+
+  .block img {
+    padding: 50px;
+  }
+
+  .block .text_block {
+    font-family: Goudy Old Style, serif;
+    line-height: 25px;
+    color: #979797;
+  }
+
+  .block .text_block h5 {
+    display: inline;
+  }
+
+  .block .text_block span {
+
+  }
+
+  .game_div {
+    margin: 50px 200px;
+  }
+
 </style>
 
 <nav>
@@ -55,10 +63,30 @@
   <a href="index.erb#askfor">ASK FOR</a>
 </nav>
 
-<header>
-<%= image_tag("gfg_logo.png") %>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus modi <br>sapiente iusto voluptate dignissimos assumenda, earum accusamus, sequir <br> blanditiis et quia expedita, delectus, dolor molestias repellat quod totam <br>nemo labore!</p>
-<div id="pixel_platform_Div"></div>
-<button>Play</button>
-<button>Personalize</button>
+<header class="block">
+  <%= image_tag("gfg_logo.png") %>
+  <p class="text_block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus modi <br>sapiente iusto voluptate dignissimos assumenda, earum accusamus, sequir <br> blanditiis et quia expedita, delectus, dolor molestias repellat quod totam <br>nemo labore!</p>
+  <div id="pixel_platform_Div" class="game_div"></div>
+  <button>Play</button>
+  <button>Personalize</button>
 </header>
+
+<article class="block">
+  <%= image_tag("raquel.jpeg") %>
+  <section class="text_block">
+    <h5>NAME:</h5> <span>Raquel</span><br>
+    <h5>WEAKNESS:</h5> <span>Sushi</span><br>
+    <h5>PHOBIA:</h5> <span>Spiders</span><br>
+    <h5>DESIRE:</h5> <span>Climb</span><br>
+  </section>
+  <div id="raquel_pixel_platform_Div" class="game_div">
+    <%= image_tag("personal_game.png") %>
+  </div>
+  <button>Play</button>
+  <button>Personalize</button>
+</article>
+
+
+
+
+
