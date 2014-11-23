@@ -1,0 +1,15 @@
+* {
+	box-sizing: border-box;
+}
+.cf:before, .cf:after {
+	content: " "; 
+	display: table;
+}
+.cf:after {
+	clear: both;
+}
+.Vertical-Align {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%)
+}
