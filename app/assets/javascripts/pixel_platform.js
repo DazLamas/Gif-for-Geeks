@@ -4,6 +4,7 @@
 var game         = new Phaser.Game(1200, 480, Phaser.AUTO, 'pixel_platform_Div');
 
 var score        = 0;
+var life       = 3;
 
 // var textStyle = { font: '64px Arial', align: 'center'};
 // var timer
@@ -100,7 +101,8 @@ var mainState = {
 
 
         // SCORE ---&--- TIMER
-        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText = game.add.text(16, 16, 'Score ' + score, { fontSize: '32px', fill: '#000' });
+        lifeText = game.add.text(16, 40, 'life: ' + life, { fontSize: '32px', fill: '#000' });
         // this.timer = game.add.bitmapText(250, 250, '00:00:00', textStyle);
 
         // Calling createWorld function defined bellow
@@ -211,7 +213,15 @@ var mainState = {
 
     killPlayer: function (){
 
-        if (score<50) {
+        if (life > 0) {
+            life -= 1;
+            lifeText.text = 'life: ' + life;
+            game.state.start('main');
+        }
+
+        else {
+            life = 3;
+            score = 0;
             this.player.kill()
             game.state.start('main');
         };
