@@ -1,10 +1,10 @@
 // Create a 500px by 340px game in the 'pixel_platform_Div' element of the index.html
 // renderer: how to render the game, Phaser.AUTO automatically choose the best
 //option between webGL and canvas
-var game         = new Phaser.Game(1200, 480, Phaser.AUTO, 'pixel_platform_Div');
+var game        = new Phaser.Game(1200, 480, Phaser.AUTO, 'pixel_platform_Div');
 
-var score        = 0;
-var life       = 3;
+var score       = 0;
+var life        = 3;
 
 // var textStyle = { font: '64px Arial', align: 'center'};
 // var timer
@@ -13,7 +13,7 @@ var life       = 3;
 // var minutes      = 0;
 
 // create only state 'mainState'
-var mainState = {
+var mainState   = {
 
 // Define the 3 default Phaser functions:
 
@@ -51,7 +51,7 @@ var mainState = {
 
         // PLAYER -------
         // to use the player everywhere in our state, we need to use the this keyword:
-        this.player = game.add.sprite(250, 170, 'player');
+        this.player = game.add.sprite(200, 0, 'player');
 
         this.player.anchor.setTo(0.5, 0.5); //anchor point
 
@@ -100,7 +100,7 @@ var mainState = {
         }
 
 
-        // SCORE ---&--- TIMER
+        // SCORE ---&--- TIMER ---- & ---- LIFES
         scoreText = game.add.text(16, 16, 'Score ' + score, { fontSize: '32px', fill: '#000' });
         lifeText = game.add.text(16, 40, 'life: ' + life, { fontSize: '32px', fill: '#000' });
         // this.timer = game.add.bitmapText(250, 250, '00:00:00', textStyle);
@@ -126,8 +126,6 @@ var mainState = {
         game.physics.arcade.overlap(this.player, greens, this.collectGreens, null, this);
         // Calling movePlayer function
         this.movePlayer();
-
-        // this.player.outOfBoundsKill = true;
 
         // //Calling a different function to update the timer just cleans up the update loop if you have other code.
         // this.updateTimer();
@@ -216,7 +214,8 @@ var mainState = {
         if (life > 0) {
             life -= 1;
             lifeText.text = 'life: ' + life;
-            game.state.start('main');
+            this.player.position.x = 200;
+            this.player.position.y = 0;
         }
 
         else {
