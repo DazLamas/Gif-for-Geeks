@@ -1,0 +1,57 @@
+{
+  "type": "01",
+  "customizations": [
+    {
+      "type": "graphic",
+      "name": "player",
+      "description":"Choose the skin of the hero:",
+      "options": [
+        "assets/players/avatar1.png",
+        "assets/players/avatar2.png",
+        "assets/players/avatar3.png"
+      ]
+    },
+    {
+      "type": "color",
+      "name": "bg",
+      "description":"Choose the background:",
+      "options": [
+        "#3498db",
+        "#3298db",
+        "#3440db"
+      ]
+    },
+    {
+      "type": "graphic",
+      "name": "spring",
+      "description":"Choose how the springs will look:",
+      "options": [
+        "assets/blocks/spring1.png",
+        "assets/blocks/spring2.png",
+        "assets/blocks/spring3.png"
+      ]
+    },
+    {
+      "type": "graphic",
+      "name": "point",
+      "description":"Choose how the points will look:",
+      "options": [
+        "assets/items/point1.png",
+        "assets/items/point2.png",
+        "assets/items/point3.png"
+      ]
+    },
+    {
+      "type": "text",
+      "name": "score",
+      "description":"Choose the text for the score:",
+      "default": "score:"
+    },
+    {
+      "type": "graphic",
+      "name": "lifes",
+      "description":"Choose the text for the life:",
+      "default": "lifes:"
+    },
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "game": {
+      "id": 1,
+      "customizations": {
+        "player": "assets/players/avatar1.png",
+        "bg": "#3298db",
+        "spring": "assets/blocks/spring1.png",
+        "point": "assets/items/point1.png",
+        "score": "Score:",
+        "lifes": "Lifes:"
+      }
+    },
+  "title": "Juego de prueba",
+  "recipient": "Someone",
+  "description": "description"
+}
