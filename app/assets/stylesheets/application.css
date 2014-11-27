@@ -12,6 +12,7 @@
  *= require reset
  *= require common
  *= require main
+ *= require gifts_style
  *= require_self
  */
 

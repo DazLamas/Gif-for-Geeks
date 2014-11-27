@@ -8,7 +8,13 @@
       "options": [
         "assets/players/avatar1.png",
         "assets/players/avatar2.png",
-        "assets/players/avatar3.png"
+        "assets/players/avatar3.png",
+        "assets/players/avatar4.png",
+        "assets/players/avatar5.png",
+        "assets/players/avatar6.png",
+        "assets/players/avatar7.png",
+        "assets/players/avatar8.png",
+        "assets/players/avatar9.png"
       ]
     },
     {
@@ -17,8 +23,8 @@
       "description":"Choose the background:",
       "options": [
         "#3498db",
-        "#5098db",
-        "#6098db"
+        "#87CEFA",
+        "#4682B4"
       ]
     },
     {
@@ -38,7 +44,12 @@
       "options": [
         "assets/items/point1.png",
         "assets/items/point2.png",
-        "assets/items/point3.png"
+        "assets/items/point3.png",
+        "assets/items/point4.png",
+        "assets/items/point5.png",
+        "assets/items/point6.png",
+        "assets/items/point7.png",
+        "assets/items/point8.png"
       ]
     },
     {

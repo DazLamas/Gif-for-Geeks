@@ -143,6 +143,7 @@ var widgetByType = {
     var input = template.querySelector("input");
     input.value = customization.default;
     input.name = customization.name;
+    input.style.display="inline-block";
   },
 
   "graphic": function(template, customization){
@@ -153,10 +154,9 @@ var widgetByType = {
       var li = document.createElement('LI');
 
       var label = document.createElement("LABEL");
-      label.style.display="block";
-      label.style.width="100px";
-      label.style.height="100px";
-      label.style.backgroundColor="black"
+      label.style.display="inline-block";
+      label.style.width="60px";
+      label.style.height="40px";
       label.style.backgroundImage='url("'+option+'")';
       label.style.backgroundSize = "contain";
       label.style.backgroundRepeat = "no-repeat";
@@ -180,7 +180,7 @@ var widgetByType = {
       var li = document.createElement('LI');
 
       var label = document.createElement("LABEL");
-      label.style.display="block";
+      label.style.display="inline-block";
       label.style.width="100px";
       label.style.height="100px";
       label.style.backgroundColor=option;
