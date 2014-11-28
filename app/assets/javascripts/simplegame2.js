@@ -1,4 +1,4 @@
-function newSimpleGame2(customization) {
+function newSimpleGame2() {
 
     return {
 
@@ -8,13 +8,7 @@ function newSimpleGame2(customization) {
         // That's where we load the game's assets
         preload: function() {
 
-            game.load.image('player', customization.player);
-
-            game.load.image('wallH', 'assets/wallHorizontal.png');
-
-            game.load.image('spring', customization.spring);
-
-            game.load.image('green', customization.point);
+            game.load.image('gameover', '/assets/game_over2.png');
 
 
         },

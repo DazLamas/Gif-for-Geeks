@@ -77,10 +77,10 @@ function newSimpleGame(customization) {
             greens.enableBody = true;
 
             // Create green squares to collect
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 10; i++)
             {
                 //  Create a green inside of the 'greens' group
-                var green = greens.create(Math.random() * 800, Math.random() * 500, 'green');
+                var green = greens.create(Math.random() * 900, Math.random() * 350, 'green');
                 // game.physics.arcade.enable(green);
             }
 
