@@ -1,18 +1,14 @@
-== README
+== What is Gift for Geeks
 
-Gift for Geeks is my final project for the development bootcamp "Iron Hack". I've used theese thecnologies :
+Gift for Geeks is my final project for the development boot camp “Iron Hack”. It's a web app where you can customize a game and then send it to a friend.
+
+I've used these technologies :
 
 * HTML5 & CSS3
-
-* Phaser.js
-
+* Phaser. j's
 * Javascript
-
 * AJAX
-
 * JSON
-
 * Ruby on Rails
 
-I hope you enjoy the game, I'll add different implementations every week, for example, new game levels, enemies, more graphics to 
-customizate...etc
+I hope you enjoy the game, I'll add different implementations every week, for example, new game levels, enemies, more graphics to customize… etc.
