@@ -2,7 +2,7 @@
 	box-sizing: border-box;
 }
 .cf:before, .cf:after {
-	content: " "; 
+	content: " ";
 	display: table;
 }
 .cf:after {
@@ -12,4 +12,10 @@
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%)
+}
+.floatR {
+  float: right;
+}
+.floarL {
+  float: left;
 }

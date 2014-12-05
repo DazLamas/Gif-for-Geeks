@@ -11,8 +11,8 @@
  * file per style scope.
  *= require reset
  *= require common
- *= require main
- *= require gifts_style
+ *= require main-style
+ *= require form-style
  *= require_self
  */
 

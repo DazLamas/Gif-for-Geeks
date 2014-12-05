@@ -1,0 +1,15 @@
+#game-form {
+  margin-left: 300px;
+}
+
+#game-form p{
+  text-align: left;
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+
+#game-form li{
+  list-style: none;
+  padding: 20px;
+  display: inline;
+}

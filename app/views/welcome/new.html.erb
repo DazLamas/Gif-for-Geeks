@@ -2,13 +2,38 @@
 <script src="assets/simplegame2.js" type="text/javascript"></script>
 <script src="assets/pixel_platform.js" type="text/javascript"></script>
 
-<header class="block">
-  <%= image_tag("gfg_logo.png") %>
+<header>
+
+</header>
+
+<nav class="menu">
+
+  <a href="">/play</a>
+  <a href="">/customize</a>
+  <a href="">/ask for</a>
+
+  <%= image_tag("icons/facebook.png") %>
+  <%= image_tag("icons/twitter.png") %>
+  <%= image_tag("icons/github.png") %>
+
+</nav>
+
+<section class="block">
+
   <p class="text_block">It's easy, use your arrow keyboard to move the player,<br> collect the green boxes bouncing over the yellow ones - and be carefull - don't touch the floor!!!</p>
+</section>
+
+<!-- GAME CANVAS -->
+<section class="block">
+
   <div id="pixel_platform_Div" class="game_div"></div>
+
   <p class="text_block">Did you enjoy it?? <br> Good, now it's time to customizate your game!!</p>
 
-<button data-game-type="1">Customize!!</button>
+  <button data-game-type="1">Customize!!</button>
+
+</section>
+<!-- FORM -->
 
 <form id="game-form"></form>
 
