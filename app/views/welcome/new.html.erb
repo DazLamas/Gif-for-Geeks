@@ -18,23 +18,28 @@
 
 </nav>
 
-<section class="block">
+<!-- GAME CANVAS & TEXT -->
+<article class="block">
 
-  <p class="text_block">It's easy, use your arrow keyboard to move the player,<br> collect the green boxes bouncing over the yellow ones - and be carefull - don't touch the floor!!!</p>
-</section>
+  <section class="container">
 
-<!-- GAME CANVAS -->
-<section class="block">
+    <div id="pixel_platform_Div" class="game_div">
+    </div>
 
-  <div id="pixel_platform_Div" class="game_div"></div>
+    <div class="text_block">
+    <%= image_tag("pixel_pacman_red.png") %>
+    <p>It's easy, use your arrow keyboard to move the player,<br> collect the green boxes bouncing over the yellow ones - and be carefull - don't touch the floor!!!</p>
 
-  <p class="text_block">Did you enjoy it?? <br> Good, now it's time to customizate your game!!</p>
+    </div>
 
-  <button data-game-type="1">Customize!!</button>
+  </section>
 
-</section>
+<!-- <p class="text_block">Did you enjoy it?? <br> Good, now it's time to customizate your game!!</p> -->
+
+</article>
+
 <!-- FORM -->
-
+<button data-game-type="1">Customize!!</button>
 <form id="game-form"></form>
 
 <form hidden id="form-template">

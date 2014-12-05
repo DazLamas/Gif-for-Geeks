@@ -12,7 +12,7 @@ function getGift(giftId, callback) {
 // Create a 500px by 340px game in the 'pixel_platform_Div' element of the index.html
 // renderer: how to render the game, Phaser.AUTO automatically choose the best
 //option between webGL and canvas
-var game        = new Phaser.Game(1200, 480, Phaser.AUTO, 'pixel_platform_Div');
+var game        = new Phaser.Game(1000, 480, Phaser.AUTO, 'pixel_platform_Div');
 
 var score       = 0;
 var life        = 3;
