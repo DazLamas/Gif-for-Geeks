@@ -2,7 +2,7 @@
 
 Gift for Geeks is my final project for the development boot camp “Iron Hack”. It's a web app where you can customize a game and then send it to a friend.
 
-I've used these technologies :
+I've used these technologies:
 
 * HTML5 & CSS3
 * Phaser. j's
