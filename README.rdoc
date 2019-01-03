@@ -17,4 +17,6 @@ I hope you enjoy the game, I'll add different implementations every week, for ex
 
 Install Rails and type at the main folder the following command:
 
-``rails server
+```
+$ rails server
+```
