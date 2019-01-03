@@ -12,3 +12,9 @@ I've used these technologies:
 * Ruby on Rails
 
 I hope you enjoy the game, I'll add different implementations every week, for example, new game levels, enemies, more graphics to customize… etc.
+
+== Set up
+
+Install Rails and type at the main folder the following command:
+
+``rails server
