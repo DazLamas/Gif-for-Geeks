@@ -15,8 +15,7 @@ I hope you enjoy the game, I'll add different implementations every week, for ex
 
 == Set up
 
-Install Rails and type at the main folder the following command:
+Install Rails and type at the main folder the following command in order to run a local server:
 
-```
 $ rails server
-```
+
