@@ -1,4 +1,4 @@
-== What is Gift for Geeks
+### What is Gift for Geeks
 
 Gift for Geeks is my final project for the development boot camp “Iron Hack”. It's a web app where you can customize a game and then send it to a friend.
 
@@ -13,7 +13,7 @@ I've used these technologies:
 
 I hope you enjoy the game, I'll add different implementations every week, for example, new game levels, enemies, more graphics to customize… etc.
 
-== Set up
+### Set up
 
 Install Rails and type at the main folder the following command:
 
