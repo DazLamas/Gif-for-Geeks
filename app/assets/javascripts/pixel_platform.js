@@ -1,17 +1,3 @@
-function getGift(giftId, callback) {
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/gifts/"+giftId);
-    xhr.responseType = "json";
-    xhr.onload = function(){
-        callback(xhr.response);
-    };
-    xhr.send();
-}
-
-// Create a 500px by 340px game in the 'pixel_platform_Div' element of the index.html
-// renderer: how to render the game, Phaser.AUTO automatically choose the best
-//option between webGL and canvas
 var game        = new Phaser.Game(1000, 480, Phaser.AUTO, 'pixel_platform_Div');
 
 var score       = 0;
@@ -23,6 +9,17 @@ var allGames = {
     "2": newSimpleGame2
 
 };
+
+function getGift(giftId, callback) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/gifts/"+giftId);
+    xhr.responseType = "json";
+    xhr.onload = function(){
+        callback(xhr.response);
+    };
+    xhr.send();
+}
 
 
 function getCustomizationAndStart() {
@@ -39,11 +36,3 @@ function getCustomizationAndStart() {
 
 
 getCustomizationAndStart();
-
-
-
-
-
-
-
-
